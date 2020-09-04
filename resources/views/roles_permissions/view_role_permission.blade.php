@@ -18,13 +18,14 @@
                         <td>{{ $role->description }}</td>
                         <td>
                             @foreach ($role->permissions as $permission)
-                                <span style="height: 20px; font-size: 14px; justify-items: center" class="badge-primary">{{ $permission->description }}</span>
+                                <span style="font-size: 14px; justify-items: center" class="badge-primary">{{ $permission->description }}</span>
                             @endforeach
+                            <a class="badge badge-primary" href="{{ route('edit_permission_to_role', ['id' => $role->id]) }}"><i size="20px" class="ion-ios-add-circle"></i></a>
                         </td>
                         <td>
                             {{! $users = \App\User::role($role)->get() }}
                             @foreach ($users as $user)
-                                <a href="{{ route('view_staff_detail', ['id'=>$user->id]) }}"><span style="height: 20px; font-size: 14px; justify-items: center" onfocus="cusor" class="badge badge-success">{{ $user->fullname }}</span></a>
+                                <a href="{{ route('view_staff_detail', ['id'=>$user->id]) }}" class="badge badge-primary" style="font-size: 14px">{{ $user->fullname }}</a>
                             @endforeach
                         </td>
                     </tr>
