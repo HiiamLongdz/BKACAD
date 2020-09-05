@@ -25,7 +25,7 @@ Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 Route::group(['middleware' => ['role:admin']], function () {
     Route::group(['prefix' => 'admin'], function () {
         Route::get('admin', function () {
-            return redirect()->route('');
+            return redirect()->route('view_role_permission');
         });
 
         Route::get('view_role_permission', 'RolePermissionController@index')->name('view_role_permission');
