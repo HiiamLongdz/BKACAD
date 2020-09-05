@@ -92,7 +92,7 @@ class CreateDatabase extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->tinyInteger('status');
-            $table->string('classes_id');
+            $table->string('classes_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
 

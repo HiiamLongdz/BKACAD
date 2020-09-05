@@ -25,22 +25,29 @@
                 </li>
 
                 <li class="has_sub">
-                    <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-briefcase"></i> <span> Quản Trị Viên </span> <span class="menu-arrow float-right"><i
+                    <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-briefcase"></i> <span> Quản
+                            Trị Viên </span> <span class="menu-arrow float-right"><i
                                 class="mdi mdi-chevron-right"></i></span></a>
                     <ul class="list-unstyled">
                         <li><a href="{{ route('view_role_permission') }}">Thông Tin Quyền Chức Vụ</a></li>
-                        <li><a href="{{ route('edit_role_permission') }}">Cập Nhật Quyền Cho Chức Vụ</a></li>
-                        {{-- <li><a href="{{ route('quyen_chi_tiet') }}">Quyền Chức Vụ Chi Tiết</a></li> --}}
+                        <li><a href="{{ route('add_staff') }}">Thêm Nhân Viên</a></li>
+                        <li><a href="{{ route('list_staff') }}">Danh Sách Nhân Viên</a></li>
                     </ul>
                 </li>
 
                 <li class="has_sub">
-                    <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-archive"></i> <span> Quản Lý
-                            Nhân Viên </span> <span class="menu-arrow float-right"><i
-                                class="mdi mdi-chevron-right"></i></span></a>
+                    <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-archive"></i> <span> Giáo Vụ
+                        </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                     <ul class="list-unstyled">
-                        {{-- <li><a href="{{ route('them_nhan_vien') }}">Thêm Nhân Viên</a></li>
-                        <li><a href="{{ route('danh_sach_nhan_vien') }}">Danh Sách Nhân Viên</a></li> --}}
+                        <li><a href="{{ route('add_lecturer') }}">Thêm Giảng Viên</a></li>
+                        <li><a href="{{ route('create_subject') }}">Thêm Môn</a></li>
+                        <li><a href="{{ route('list_subject') }}">Danh Sách Môn</a></li>
+                        <li><a href="{{ route('create_major') }}">Thêm Ngành</a></li>
+                        <li><a href="{{ route('list_major') }}">Danh Sách Ngành</a></li>
+
+                        <li><a href="{{ route('create_course') }}">Thêm Khóa</a></li>
+                        <li><a href="{{ route('list_course') }}">Danh Sách Khóa</a></li>
+                        {{-- <li><a href="{{ route('danh_sach_nhan_vien') }}">Danh Sách Nhân Viên</a></li> --}}
                     </ul>
                 </li>
 
@@ -53,30 +60,37 @@
                         <li><a href="{{ route('them_nganh') }}">Thêm Ngành</a></li>
                         <li><a href="{{ route('them_mon') }}">Thêm Môn</a></li>
                         <li><a href="{{ route('them_nganh_cho_khoa') }}">Thêm Ngành Cho Khóa</a></li>
-                        <li><a href="{{ route('them_mon_cho_nganh') }}">Thêm Môn Cho Ngành</a></li> --}}
+                        <li><a href="{{ route('them_mon_cho_nganh') }}">Thêm Môn Cho Ngành</a></li>
+                        --}}
                     </ul>
                 </li>
 
                 <li>
-                    {{-- <a href="{{ route('diem_danh') }}" class="waves-effect"><i class="dripicons-calendar"></i><span> Điểm Danh
+                    {{-- <a href="{{ route('diem_danh') }}" class="waves-effect"><i
+                            class="dripicons-calendar"></i><span> Điểm Danh
                         </span></a> --}}
                 </li>
 
                 <li class="has_sub">
-                    <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-document"></i><span> Quản Lí Sinh Viên
-                    </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
+                    <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-document"></i><span> Quản Lí
+                            Sinh Viên
+                        </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                     <ul class="list-unstyled">
-                        {{-- <li><a href="{{ route('nhap_sinh_vien') }}">Nhập Sinh Viên</a></li>
-                        <li><a href="{{ route('danh_sach_sinh_vien') }}">Danh Sách Sinh Viên</a></li> --}}
+                        <li><a href="{{ route('import_student') }}">Nhập Sinh
+                                Viên</a></li>
+                        <li><a href="{{ route('list_student') }}">Danh Sách Sinh Viên</a></li>
+
                     </ul>
                 </li>
 
                 <li class="has_sub">
-                    <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-graph-bar"></i><span> Phân Công
+                    <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-graph-bar"></i><span> Phân
+                            Công
                         </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                     <ul class="list-unstyled">
                         {{-- <li><a href="{{ route('phan_cong') }}">Phân Công</a></li>
-                        <li><a href="{{ route('chi_tiet_phan_cong') }}">Chi Tiết Phân Công</a></li> --}}
+                        <li><a href="{{ route('chi_tiet_phan_cong') }}">Chi Tiết Phân Công</a></li>
+                        --}}
 
                     </ul>
                 </li>
