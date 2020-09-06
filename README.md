@@ -19,11 +19,11 @@ DB_PASSWORD=database-password
 ```
 
 > 5. run in command prompt 
+> `php artisan key:generate`
 > `php artisan migrate`
-> &&
 > `php artisan db:seed --class=UserSeeder`
-> 6. `php artisan key:generate`
-> 7. `php artisan serve`
+> 
+> 6. `php artisan serve`
 
 ```
 Account admin to login dashboard: 
