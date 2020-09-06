@@ -38,6 +38,17 @@ class StudentController extends Controller
         return Datatables::of($student)->make(true);
     }
 
+    public function getListStudentAttendance(Request $request)
+    {
+        if($request->ajax()){
+            $class = $request->class_id;
+
+            $students = Student::whereIn('classes_id', $class)->get();
+
+            return response()->json($students);
+        }
+    }
+
     public function import()
     {
         $courses = Course::all();

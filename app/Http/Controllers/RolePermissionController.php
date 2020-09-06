@@ -54,30 +54,30 @@ class RolePermissionController extends Controller
         return redirect()->route('view_role_permission');
     }
 
-    public function update(Request $request)
-    {
-        $roles = $request->role;
-        $permissions = $request->permission;
+    // public function update(Request $request)
+    // {
+    //     $roles = $request->role;
+    //     $permissions = $request->permission;
 
-        $roles = Role::findById($roles);
+    //     $roles = Role::findById($roles);
 
-        DB::beginTransaction();
+    //     DB::beginTransaction();
 
-        try {
-            foreach($permissions as $permission) {
-                $permission = Permission::findById($permission);
-                $roles->givePermissionTo($permission);
-            }
+    //     try {
+    //         foreach($permissions as $permission) {
+    //             $permission = Permission::findById($permission);
+    //             $roles->givePermissionTo($permission);
+    //         }
 
-            DB::commit();
-            alert()->success('Thành Công!', 'Đồng bộ quyền thành công cho chức vụ');
-        } catch (\Throwable $th) {
-            //throw $th;
-            DB::rollback();
-            alert()->error('Oops..!', 'Đã có lỗi xảy ra, vui lòng thử lại!');
-            return redirect()->back();
-        }
+    //         DB::commit();
+    //         alert()->success('Thành Công!', 'Đồng bộ quyền thành công cho chức vụ');
+    //     } catch (\Throwable $th) {
+    //         //throw $th;
+    //         DB::rollback();
+    //         alert()->error('Oops..!', 'Đã có lỗi xảy ra, vui lòng thử lại!');
+    //         return redirect()->back();
+    //     }
 
-        return redirect()->route('view_role_permission');
-    }
+    //     return redirect()->route('view_role_permission');
+    // }
 }

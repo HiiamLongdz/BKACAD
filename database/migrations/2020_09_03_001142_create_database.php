@@ -89,6 +89,7 @@ class CreateDatabase extends Migration
             $table->boolean('gender');
             $table->string('phone');
             $table->string('email')->unique();
+            $table->string('avatar')->default('assets/images/avatar_default.png');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->tinyInteger('status');
@@ -103,6 +104,7 @@ class CreateDatabase extends Migration
             $table->string('class_id');
             $table->string('subject_id');
             $table->string('lecturer_id');
+            $table->boolean('status')->default('0');
 
             $table->foreign('lecturer_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('class_id')->references('id')->on('classes')->onDelete('cascade');
@@ -114,27 +116,28 @@ class CreateDatabase extends Migration
         });
 
         Schema::create('attendances', function (Blueprint $table) {
-            $table->string('id')->primary();
+            $table->increments('id');
             $table->string('lecturer_id');
             $table->string('subject_id');
-            $table->string('class_id');
             $table->date('date');
             $table->time('time_start');
             $table->time('time_end');
 
             $table->foreign('lecturer_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
-            $table->foreign('class_id')->references('id')->on('classes')->onDelete('cascade');
+
             $table->timestamps();
         });
 
         Schema::create('attendance_details', function (Blueprint $table) {
-            $table->string('attendance_id');
+            $table->integer('attendance_id')->unsigned();
             $table->string('student_id');
             $table->tinyInteger('status');
+            $table->string('class_id');
 
             $table->foreign('attendance_id')->references('id')->on('attendances')->onDelete('cascade');
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
+            $table->foreign('class_id')->references('id')->on('classes')->onDelete('cascade');
             $table->timestamps();
 
             $table->primary(array('attendance_id', 'student_id'));

@@ -51,24 +51,10 @@
                     </ul>
                 </li>
 
-                <li class="has_sub">
-                    <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-rocket"></i> <span> Quản Lí
-                            Học Viện
-                        </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                    <ul class="list-unstyled">
-                        {{-- <li><a href="{{ route('them_khoa') }}">Thêm Khóa</a></li>
-                        <li><a href="{{ route('them_nganh') }}">Thêm Ngành</a></li>
-                        <li><a href="{{ route('them_mon') }}">Thêm Môn</a></li>
-                        <li><a href="{{ route('them_nganh_cho_khoa') }}">Thêm Ngành Cho Khóa</a></li>
-                        <li><a href="{{ route('them_mon_cho_nganh') }}">Thêm Môn Cho Ngành</a></li>
-                        --}}
-                    </ul>
-                </li>
-
                 <li>
-                    {{-- <a href="{{ route('diem_danh') }}" class="waves-effect"><i
+                    <a href="{{ route('attend') }}" class="waves-effect"><i
                             class="dripicons-calendar"></i><span> Điểm Danh
-                        </span></a> --}}
+                        </span></a>
                 </li>
 
                 <li class="has_sub">
@@ -88,10 +74,8 @@
                             Công
                         </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
                     <ul class="list-unstyled">
-                        {{-- <li><a href="{{ route('phan_cong') }}">Phân Công</a></li>
-                        <li><a href="{{ route('chi_tiet_phan_cong') }}">Chi Tiết Phân Công</a></li>
-                        --}}
-
+                        <li><a href="{{ route('assign') }}">Phân Công</a></li>
+                        <li><a href="{{ route('assignment_detail') }}">Chi Tiết Phân Công</a></li>
                     </ul>
                 </li>
 

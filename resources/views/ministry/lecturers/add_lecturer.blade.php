@@ -2,11 +2,12 @@
 
 @section('title')
     Thêm Nhân Viên Mới
-    <link rel="stylesheet" href="{{ asset('assets/css/select2.min.css') }}">
+
 
 @endsection
 
 @section('content')
+<link rel="stylesheet" href="{{ asset('assets/css/select2.min.css') }}">
     <div class="row">
         <div class="col-6 mx-auto">
             <form action="{{ route('process_add_lecturer') }}" method="post">

@@ -58,11 +58,13 @@ class MajorController extends Controller
 
     // }
 
-    public function showSubjectOfMajor()
+    public function showSubjectOfMajor(Request $request)
     {
-        $majors = Major::all();
+        if ($request->ajax()) {
+            $subjects = Major::find($request->major_id)->subjects;
 
-        return view('subject.view_subject_of_major', compact('majors'));
+            return response()->json($subjects);
+        }
     }
 
     public function showCourseMajor(Request $request)
