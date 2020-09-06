@@ -22,19 +22,48 @@ class AttendanceController extends Controller
         // dd($get_time);
         $last_att = Attendance::where('lecturer_id', $lecturer)->get()->last();
         $subjects = Assignment::join('subjects', 'subjects.id', '=', 'assignments.subject_id')
-        ->where('lecturer_id', $lecturer)
-        ->groupBy('subjects.id', 'subject_name')
-        ->get(['subjects.id', 'subject_name']);
+            ->where('lecturer_id', $lecturer)
+            ->groupBy('subjects.id', 'subject_name')
+            ->get(['subjects.id', 'subject_name']);
 
+        if (empty($last_att) || ($get_time[0] >= $last_att->date && $get_time[1] < $last_att->time_start)) {
+
+            alert()->warning('Wrong!', 'Đây không phải lúc điểm danh, vui lòng trở lại vào thời gian hợp lệ');
+            return redirect()->back();
+        } else
         if (empty($last_att) || ($get_time[0] >= $last_att->date && $get_time[1] > $last_att->time_end)) {
 
             return view('attendances.attend', compact('subjects'));
         } else {
-            $att_id = $last_att->id;
-            $classes = DB::table('attendance_details')->where('attendance_id', $att_id)->get('class_id')->unique('class_id');
-            $subject = Subject::find($last_att->subject_id);
 
-            // return view('attendances.update_attend', );
+            $lecturer = auth()->user()->id;
+
+            $last_att = Attendance::where('lecturer_id', $lecturer)->get()->last();
+            $subjects = Subject::find($last_att->subject_id)->first();
+            $att_id = $last_att->id;
+
+            $class = DB::table('attendance_details')->where('attendance_id', $att_id)->get('class_id')->unique();
+            $att_details = DB::table('attendance_details')
+                ->join('students', 'students.id', '=', 'attendance_details.student_id')
+                ->join('attendances', 'attendances.id', '=', 'attendance_details.attendance_id')
+                ->where('attendance_id', $att_id)
+                ->where('subject_id', $subjects->id)
+                ->select(['students.id', 'fullname', 'attendance_details.status'])
+                ->selectRaw('count(attendances.id) as total')
+                ->selectRaw('sum(if( attendance_details.status = 0, 0, if( attendance_details.status = 1, 1/3, if( attendance_details.status = 2, 1/3, 1)))) as total_abs')
+                ->groupBy(['students.id', 'fullname', 'attendance_details.status'])
+                ->orderBy('fullname')
+                ->get();
+
+            $arr_class = array();
+
+            foreach ($class as $key => $value) {
+                array_push($arr_class, $value->class_id);
+            }
+
+            $classes = Classes::whereIn('id', $arr_class)->get();
+
+            return view('attendances.update_attendance', compact(['last_att', 'classes', 'subjects', 'att_details']));
         }
     }
 
@@ -106,6 +135,36 @@ class AttendanceController extends Controller
                 'class_id' => $key->classes_id,
             ]);
         }
+
+        return view('attendances.update_attendance', compact(['last_att', 'classes', 'subjects', 'att_details']));
+
+    }
+
+    public function attendanceHistory()
+    {
+        alert()->warning('Coming Soon!', 'Tính năng sẽ được cập nhật trong thời gian tới');
+        return redirect()->back();
+    }
+
+    public function attendanceOver()
+    {
+        alert()->warning('Coming Soon!', 'Tính năng sẽ được cập nhật trong thời gian tới');
+        return redirect()->back();
+    }
+
+    public function update(Request $request)
+    {
+        // return $request;
+        $students = DB::table('attendance_details')->where('attendance_id', $request->attendance_id)->get();
+
+        foreach ($students as $key => $value) {
+            $student_id = $value->student_id;
+            DB::table('attendance_details')->where('student_id', $value->student_id)
+                ->where('attendance_id', $request->attendance_id)
+                ->update(['status' => $request->$student_id]);
+        }
+        alert()->success('Thành Công!', 'Cập nhật thành công!');
+        return redirect()->route('attend');
 
     }
 }

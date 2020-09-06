@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
 
 Route::get('/', function () {
     return redirect()->route('dashboard');
@@ -82,13 +82,22 @@ Route::group(['middleware' => ['role:ministry|admin']], function () {
             Route::post('process_assign', 'AssignmentController@store')->name('process_assign');
             Route::get('assignment_detail', 'AssignmentController@index')->name('assignment_detail');
         });
+
+        Route::get('attend_over', 'AttendanceController@attendanceOver')->name('attend_over');
+        Route::get('attendance_history', 'AttendanceController@attendanceHistory')->name('attendance_history');
+        Route::post('process_attend_over', 'AttendanceController@store')->name('process_attend_over');
     });
 });
 
-Route::group(['middleware' => ['role:admin|ministry|lecturer']], function () {
+Route::group(['middleware' => ['role:lecturer']], function () {
     Route::group(['prefix' => 'lecturer'], function () {
         Route::get('attend', 'AttendanceController@create')->name('attend');
         Route::post('process_attend', 'AttendanceController@store')->name('process_attend');
+        Route::get('attendance_history', 'AttendanceController@attendanceHistory')->name('attendance_history');
+        Route::get('edit_attendance/{id}', 'AttendanceController@edit')->name('edit_attendance');
+        Route::post('process_update_attend', 'AttendanceController@update')->name('process_update_attend');
+
+
     });
 });
 
@@ -98,3 +107,7 @@ Route::get('get_list_student', 'StudentController@getListStudent')->name('get_li
 Route::post('show_subject_major', 'MajorController@showSubjectOfMajor')->name('show_subject_major');
 Route::post('show_class', 'ClassController@showClass')->name('show_class');
 Route::post('get_list_student_attendance', 'StudentController@getListStudentAttendance')->name('get_list_student_attendance');
+
+
+// Route::get('test', 'TestController@index')->name('test');
+Route::get('view_profile', 'UserController@index')->name('view_profile');

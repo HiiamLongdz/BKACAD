@@ -23,7 +23,7 @@
                         <span> Dashboard <span class="badge badge-success badge-pill float-right">3</span></span>
                     </a>
                 </li>
-
+                @role('admin')
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-briefcase"></i> <span> Quản
                             Trị Viên </span> <span class="menu-arrow float-right"><i
@@ -34,7 +34,9 @@
                         <li><a href="{{ route('list_staff') }}">Danh Sách Nhân Viên</a></li>
                     </ul>
                 </li>
+                @endrole
 
+                @role('ministry|admin')
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-archive"></i> <span> Giáo Vụ
                         </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
@@ -47,16 +49,37 @@
 
                         <li><a href="{{ route('create_course') }}">Thêm Khóa</a></li>
                         <li><a href="{{ route('list_course') }}">Danh Sách Khóa</a></li>
-                        {{-- <li><a href="{{ route('danh_sach_nhan_vien') }}">Danh Sách Nhân Viên</a></li> --}}
+                        {{-- <li><a href="{{ route('danh_sach_nhan_vien') }}">Danh Sách
+                                Nhân Viên</a></li> --}}
                     </ul>
                 </li>
+                @endrole
 
+                @role('lecturer')
                 <li>
-                    <a href="{{ route('attend') }}" class="waves-effect"><i
-                            class="dripicons-calendar"></i><span> Điểm Danh
+                    <a href="{{ route('attend') }}" class="waves-effect"><i class="dripicons-calendar"></i><span> Điểm
+                            Danh
                         </span></a>
                 </li>
+                <li>
+                    <a href="{{ route('attendance_history') }}" class="waves-effect"><i
+                            class="dripicons-calendar"></i><span> Lịch Sử Điểm Danh
+                        </span></a>
+                </li>
+            @else
+                <li>
+                    <a href="{{ route('attend_over') }}" class="waves-effect"><i class="dripicons-calendar"></i><span>
+                            Điểm Danh Ngoài Giờ
+                        </span></a>
+                </li>
+                <li>
+                    <a href="{{ route('attendance_history') }}" class="waves-effect"><i
+                            class="dripicons-calendar"></i><span> Lịch Sử Điểm Danh
+                        </span></a>
+                </li>
+                @endrole
 
+                @role('admin|ministry')
                 <li class="has_sub">
                     <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-document"></i><span> Quản Lí
                             Sinh Viên
@@ -78,56 +101,7 @@
                         <li><a href="{{ route('assignment_detail') }}">Chi Tiết Phân Công</a></li>
                     </ul>
                 </li>
-
-                <li class="has_sub">
-                    <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-view-thumb"></i><span> Tables
-                        </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                    <ul class="list-unstyled">
-                        <li><a href="tables-basic.html">Basic Tables</a></li>
-                        <li><a href="tables-datatable.html">Data Table</a></li>
-                        <li><a href="tables-responsive.html">Responsive Table</a></li>
-                        <li><a href="tables-editable.html">Editable Table</a></li>
-                    </ul>
-                </li>
-
-                <li class="menu-title">Extra</li>
-
-                <li class="has_sub">
-                    <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-location"></i><span> Maps
-                        </span> <span class="badge badge-danger badge-pill float-right">2</span></a>
-                    <ul class="list-unstyled">
-                        <li><a href="maps-google.html"> Google Map</a></li>
-                        <li><a href="maps-vector.html"> Vector Map</a></li>
-                    </ul>
-                </li>
-
-                <li class="has_sub">
-                    <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-copy"></i><span> Pages
-                        </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                    <ul class="list-unstyled">
-                        <li><a href="pages-blank.html">Blank Page</a></li>
-                        <li><a href="pages-login.html">Login</a></li>
-                        <li><a href="pages-register.html">Register</a></li>
-                        <li><a href="pages-recoverpw.html">Recover Password</a></li>
-                        <li><a href="pages-lock-screen.html">Lock Screen</a></li>
-                        <li><a href="pages-404.html">Error 404</a></li>
-                        <li><a href="pages-500.html">Error 500</a></li>
-                    </ul>
-                </li>
-
-                <li class="has_sub">
-                    <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-medical"></i><span> Extras
-                        </span> <span class="menu-arrow float-right"><i class="mdi mdi-chevron-right"></i></span></a>
-                    <ul class="list-unstyled">
-                        <li><a href="extras-pricing.html">Pricing</a></li>
-                        <li><a href="extras-invoice.html">Invoice</a></li>
-                        <li><a href="extras-timeline.html">Timeline</a></li>
-                        <li><a href="extras-faqs.html">FAQs</a></li>
-                        <li><a href="extras-maintenance.html">Maintenance</a></li>
-                        <li><a href="extras-comingsoon.html">Coming Soon</a></li>
-                    </ul>
-                </li>
-
+                @endrole
             </ul>
         </div>
         <div class="clearfix"></div>
