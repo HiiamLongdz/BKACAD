@@ -3,7 +3,7 @@
 ### Before Using
 
 > 1. git clone `https://github.com/HiiamLongdz/BKACAD`
-> 2. cd BKACAD-Management
+> 2. cd BKACAD
 > 3. composer update
 > 4. Find `.env.example` & rename to `.env`
 
